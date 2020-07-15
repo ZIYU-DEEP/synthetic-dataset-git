@@ -8,6 +8,7 @@ from fmnist_LeNet import FashionMNISTLeNet, FashionMNISTLeNetAutoencoder
 from kmnist_LeNet import KMNISTLeNet, KMNISTLeNetAutoencoder
 from cifar10_LeNet import CIFAR10LeNet, CIFAR10LeNetAutoencoder
 from gaussian3d_net import Guassian3DNet, Gaussian3DNetAutoencoder
+from gaussian3d_net import *
 
 
 # #########################################################################
@@ -45,7 +46,7 @@ def build_network(net_name='fmnist_LeNet_one_class'):
         return CIFAR10LeNetAutoencoder(rep_dim=128)
 
     if net_name == 'gaussian3d_one_class':
-        return Gaussian3DNet(rep_dim=2)
+        return Guassian3DNet(rep_dim=2)
 
     if net_name == 'gaussian3d_rec':
         return Gaussian3DNetAutoencoder(rep_dim=2)
