@@ -175,7 +175,7 @@ class Gaussian3DLoader(BaseLoader):
                  ratio_abnormal: float=0.1,
                  split: int=0.2,
                  random_state: int=42):
-        super().__init__(root)
+        super().__init__()
 
         # Get train set
         self.train_set = Gaussian3DDataset(normal_mu,
@@ -263,7 +263,7 @@ class Gaussian3DLoaderEval(BaseLoader):
                  ratio_abnormal: float=0.1,
                  split: int=0.2,
                  random_state: int=42):
-        super().__init__(root)
+        super().__init__()
 
         # Get train set
         self.all_set = Gaussian3DDatasetEval(abnormal_mu_test,
