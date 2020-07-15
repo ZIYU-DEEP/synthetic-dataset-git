@@ -254,8 +254,8 @@ print('Done Training.')
 #############################################
 f = open(txt_result_file, 'a')
 
-mean_d1i_list = gen_ball(2.5, abnormal_mu_)
-mean_d0i_list = gen_ball(2.5, normal_mu)
+mean_d1i_list = gen_ball(2.5, [int(i) for i in abnormal_mu_.split('_')])
+mean_d0i_list = gen_ball(2.5, [int(i) for i in normal_mu.split('_')])
 
 f.write('============================================================\n')
 f.write('Recall when d1i changes (FPR=10%):\n')
