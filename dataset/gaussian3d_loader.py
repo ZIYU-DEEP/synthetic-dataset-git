@@ -47,7 +47,7 @@ def gen_gaussian_train(normal_mu, abnormal_mu, ratio_abnormal, split, random_sta
     # Generate X_abnormal and concatenate data
     if abnormal_mu:
         # Generate X_abnormal
-        abnormal_mu = [int(i) for i in abnormal_mu.split('_')]
+        abnormal_mu = [float(i) for i in abnormal_mu.split('_')]
         X_abnormal = np.random.multivariate_normal(abnormal_mu, cov, int(6000 * ratio_abnormal))
         y_abnormal = np.ones(X_abnormal.shape[0])
 
