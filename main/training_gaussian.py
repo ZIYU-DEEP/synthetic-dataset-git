@@ -293,7 +293,6 @@ f.write('============================================================\n')
 f.write('Recall when d0i changes (FPR=10%):\n')
 for mean in mean_d0i_list:
     # Load dataset
-    abnormal_mu_test='{}_{}_{}'.format(mean[0], mean[1], mean[2])
     dataset_eval = load_dataset(loader_name=loader_eval_name,
                                 abnormal_mu_test=abnormal_mu_test,
                                 normal_mu_train=normal_mu,
