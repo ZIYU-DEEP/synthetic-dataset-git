@@ -38,7 +38,7 @@ def gen_gaussian_train(normal_mu, abnormal_mu, ratio_abnormal, split, random_sta
     cov = [[0.1, 0, 0],
            [0, 0.1, 0],
            [0, 0, 0.1]]
-    normal_mu = [int(i) for i in normal_mu.split('_')]
+    normal_mu = [float(i) for i in normal_mu.split('_')]
 
     # Generate X_normal
     X_normal = np.random.multivariate_normal(normal_mu, cov, 6000)
@@ -233,7 +233,7 @@ class Gaussian3DDatasetEval(Dataset):
 
         # Generate abnormal X to test
         cov = [[0.1, 0, 0], [0, 0.1, 0], [0, 0, 0.1]]
-        X = np.random.multivariate_normal([int(i) for i in abnormal_mu_test.split('_')], cov, 6000 * ratio_abnormal)
+        X = np.random.multivariate_normal([float(i) for i in abnormal_mu_test.split('_')], cov, 6000 * ratio_abnormal)
         y = np.ones(X.shape[0])
 
         # Normalize the abnormal X
