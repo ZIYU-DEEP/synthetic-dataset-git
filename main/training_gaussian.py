@@ -286,7 +286,7 @@ for mean in mean_d1i_list:
     d1i = ((np.array(mean) - [int(i) for i in normal_mu_.split('_')]) ** 2).sum()
 
     # Write results
-    f.write('[mean={}; d0i=2.5, d1i={}; recall={}]\n'.format(mean, d1i, recall_90))
+    f.write('[d0i=2.5, d1i={}; recall={}]\n'.format(mean, d1i, recall_90))
 
 f.write('============================================================\n')
 f.write('Recall when d0i changes (FPR=10%):\n')
@@ -316,7 +316,7 @@ for mean in mean_d0i_list:
     d0i = ((np.array(mean) - [int(i) for i in abnormal_mu_.split('_')]) ** 2).sum()
 
     # Write results
-    f.write('[mean={}; d0i={}; d1i=2.5; recall={}]\n'.format(mean, d0i, recall_90))
+    f.write('[d0i={}; d1i=2.5; recall={}]\n'.format(mean, d0i, recall_90))
 
 f.write('###########################################################\n\n\n\n')
 f.close()
