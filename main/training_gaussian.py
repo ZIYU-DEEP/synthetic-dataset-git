@@ -283,7 +283,7 @@ for mean in mean_d1i_list:
     # Get predicted label
     y_90 = [1 if e > cut_90 else 0 for e in scores]
     recall_90 = sum(y_90) / len(y_90)
-    d0i = ((np.array(mean) - [int(i) for i in normal_mu_.split('_')]) ** 2).sum()
+    d0i = ((np.array(mean) - [int(i) for i in normal_mu.split('_')]) ** 2).sum()
 
     # Write results
     f.write('[d1i=2.5, d0i={}; recall={}]\n'.format(d0i, recall_90))
