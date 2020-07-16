@@ -241,8 +241,8 @@ class Gaussian3DDatasetEval(Dataset):
         X = scaler.transform(X)
 
         # Transform to tensors
-        self.X = torch.tensor(self.X, dtype=torch.float32)
-        self.y = torch.tensor(self.y, dtype=torch.float32)
+        self.X = torch.tensor(X, dtype=torch.float32)
+        self.y = torch.tensor(y, dtype=torch.float32)
 
 
     def __getitem__(self, index):
