@@ -233,6 +233,7 @@ class Gaussian3DDatasetEval(Dataset):
 
         # Generate abnormal X to test
         cov = [[0.1, 0, 0], [0, 0.1, 0], [0, 0, 0.1]]
+        print(abnormal_mu_test)
         X = np.random.multivariate_normal(abnormal_mu_test, cov, 6000 * ratio_abnormal)
         y = np.ones(X.shape[0])
 
