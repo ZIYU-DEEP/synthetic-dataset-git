@@ -332,7 +332,7 @@ for mean in mean_d1i_list:
     f.write('[d0i=2.5; d1i={}; recall={}]\n'.format(d1i, recall_90))
 
     # Prepare for the DataFrame
-    res_d1i.append([d1i, radius_normal, recall_90, mean])
+    res_d1i.append([radius_normal, d1i, recall_90, mean])
 
 f.write('###########################################################\n\n\n\n')
 f.close()
