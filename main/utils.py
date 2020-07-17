@@ -2,7 +2,7 @@ import numpy as np
 from math import sin, cos
 
 
-def gen_ball(r, mu):
+def gen_ball(r, mu, step=45):
     """
     Generate a set of data points surrounding a point like a ball.
     This function will later be used in main to generate a set of means
@@ -13,13 +13,14 @@ def gen_ball(r, mu):
            abnormal; used as the radius here
         mu: (np.array) a 3d array specifying the mu for trained normal
             or the trained abnormal data
+        step: (int) the step (degree / du) to get the samples
 
     Returns:
         result: (list) a list a 3d arrays indicating the mean for abnormal
                 data to test
     """
-    thetas = range(0, 360, 60)
-    phis = range(0, 360, 60)
+    thetas = range(0, 360, step)
+    phis = range(0, 360, step)
     pairs = [(theta, phi) for theta in thetas for phi in phis]
 
     result = []

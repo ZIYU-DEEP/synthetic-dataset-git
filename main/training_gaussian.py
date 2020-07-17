@@ -89,6 +89,12 @@ parser.add_argument('--load_ae', type=bool, default=False,
 
 # Arguments for output_paths
 parser.add_argument('--txt_filename', type=str, default='full_results.txt')
+
+# Arguments for utils
+parser.add_argument('-st', '--step', type=int, default=45)
+parser.add_argument('-raa', '--radius_normal', type=float, default=2.5)
+parser.add_argument('-ran', '--radius_abnormal', type=float, default=2.5)
+
 p = parser.parse_args()
 
 # Extract the arguments
@@ -105,18 +111,19 @@ lr_milestones = tuple(int(i) for i in p.lr_milestones.split('_'))
 weight_decay, ae_weight_decay, device_no, n_jobs_dataloader = p.weight_decay, p.ae_weight_decay, p.device_no, p.n_jobs_dataloader
 save_ae, load_ae = p.save_ae, p.load_ae
 txt_filename = p.txt_filename
+step, radius_normal, radius_abnormal = p.step, p.radius_normal, p.radius_abnormal
 
 # Define folder to save the model and relating results
+# Note that we delete pretrain here; the default setting is pretrain.
 if optimizer_ in ['one_class', 'one_class_unsupervised']:
-    folder_name = '{}_[{}]_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(pretrain), str(ratio_abnormal))
-    out_path = './result/one_class/{}'.format(folder_name)
-    final_path = '{}/net_{}_eta_{}_epochs_{}_batch_{}'.format(out_path, net_name, eta_str,
-                                                              n_epochs, batch_size)
+    folder_name = '{}_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(ratio_abnormal))
+    out_path = './report/one_class/{}'.format(folder_name)
+    final_path = out_path
+
 elif optimizer_ in ['rec', 'rec_unsupervised']:
-    folder_name = '{}_[{}]_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(pretrain), str(ratio_abnormal))
-    out_path = './result/rec/{}'.format(folder_name)
-    final_path = '{}/net_{}_eta_{}_epochs_{}_batch_{}'.format(out_path, net_name, eta_str,
-                                                              n_epochs, batch_size)
+    folder_name = '{}_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(ratio_abnormal))
+    out_path = './report/rec/{}'.format(folder_name)
+    final_path = out_path
 
 if not os.path.exists(out_path): os.makedirs(out_path)
 if not os.path.exists(final_path): os.makedirs(final_path)
@@ -254,11 +261,11 @@ print('Done Training.')
 #############################################
 f = open(txt_result_file, 'a')
 
-mean_d1i_list = gen_ball(2.5, [int(i) for i in abnormal_mu_.split('_')])
-mean_d0i_list = gen_ball(2.5, [int(i) for i in normal_mu.split('_')])
+mean_d1i_list = gen_ball(radius_abnormal, [int(i) for i in abnormal_mu_.split('_')], step)
+mean_d0i_list = gen_ball(radius_normal, [int(i) for i in normal_mu.split('_')], step)
 
 f.write('============================================================\n')
-f.write('Recall when d1i changes (FPR=10%):\n')
+f.write('Recall when d0i changes (FPR=10%):\n')
 
 for mean in mean_d1i_list:
     # Load dataset
@@ -289,7 +296,7 @@ for mean in mean_d1i_list:
     f.write('[d1i=2.5, d0i={}; recall={}]\n'.format(d0i, recall_90))
 
 f.write('============================================================\n')
-f.write('Recall when d0i changes (FPR=10%):\n')
+f.write('Recall when d1i changes (FPR=10%):\n')
 for mean in mean_d0i_list:
     # Load dataset
     dataset_eval = load_dataset(loader_name=loader_eval_name,
