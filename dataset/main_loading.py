@@ -22,6 +22,7 @@ def load_dataset(loader_name: str='fmnist',
                  label_abnormal: tuple=(),
                  label_eval:tuple=(1,),
                  ratio_abnormal: float=0.1,
+                 num_examples: int=1000,
                  test_eval: bool=False):
 
     # known_loaders = ('fmnist', 'fmnist_eval', 'cifar10', 'cifar10_eval')
@@ -69,6 +70,7 @@ def load_dataset(loader_name: str='fmnist',
         return Gaussian3DLoaderEval(abnormal_mu_test,
                                     normal_mu_train,
                                     abnormal_mu_train,
-                                    ratio_abnormal)
+                                    ratio_abnormal,
+                                    num_examples)
 
     return None

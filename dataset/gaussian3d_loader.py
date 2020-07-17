@@ -219,6 +219,7 @@ class Gaussian3DDatasetEval(Dataset):
                  normal_mu_train: str='1_-1_1',
                  abnormal_mu_train: str='',
                  ratio_abnormal: float=0.1,
+                 num_examples: int=1000,
                  split: int=0.2,
                  random_state: int=42):
         super(Dataset, self).__init__()
@@ -234,7 +235,7 @@ class Gaussian3DDatasetEval(Dataset):
         # Generate abnormal X to test
         cov = [[0.1, 0, 0], [0, 0.1, 0], [0, 0, 0.1]]
         print(abnormal_mu_test)
-        X = np.random.multivariate_normal(abnormal_mu_test, cov, int(6000 * ratio_abnormal))
+        X = np.random.multivariate_normal(abnormal_mu_test, cov, num_examples)
         y = np.ones(X.shape[0])
 
         # Normalize the abnormal X
@@ -262,6 +263,7 @@ class Gaussian3DLoaderEval(BaseLoader):
                  normal_mu_train: str='1_-1_1',
                  abnormal_mu_train: str='',
                  ratio_abnormal: float=0.1,
+                 num_examples: int=1000,
                  split: int=0.2,
                  random_state: int=42):
         super().__init__()
@@ -271,6 +273,7 @@ class Gaussian3DLoaderEval(BaseLoader):
                                              normal_mu_train,
                                              abnormal_mu_train,
                                              ratio_abnormal,
+                                             num_examples,
                                              split,
                                              random_state)
 

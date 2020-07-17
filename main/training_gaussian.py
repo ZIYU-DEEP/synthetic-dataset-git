@@ -54,6 +54,8 @@ parser.add_argument('-am_', '--abnormal_mu_', type=str, default='1_1_1',
                     help='When you need to assign a value for abnormal mu in unsupervised setting.')
 parser.add_argument('-ra', '--ratio_abnormal', type=float, default=0.1,
                     help='[Example]: 0.1')
+parser.add_argument('-ne', '--num_examples', type=int, default=1000,
+                    help='The number of examples for your test set.')
 
 # Arguments for main_network
 parser.add_argument('-nt', '--net_name', type=str, default='gaussian3d_one_class',
@@ -102,7 +104,7 @@ random_state = p.random_state
 loader_name, loader_eval_name = p.loader_name, p.loader_eval_name
 normal_mu, abnormal_mu, abnormal_mu_ = p.normal_mu, p.abnormal_mu, p.abnormal_mu_
 label_normal, label_abnormal = (0,), (1,)  # simply set the label for normal and abnormal data; consistent to the label set
-ratio_abnormal = p.ratio_abnormal
+ratio_abnormal, num_examples = p.ratio_abnormal, p.num_examples
 
 net_name, rep_dim, pretrain, load_model = p.net_name, p.rep_dim, int(p.pretrain), p.load_model
 optimizer_, eta_str, optimizer_name = p.optimizer_, p.eta_str, p.optimizer_name
@@ -276,7 +278,8 @@ for mean in mean_d0i_list:
                                 abnormal_mu_test=mean,
                                 normal_mu_train=normal_mu,
                                 abnormal_mu_train=abnormal_mu,
-                                ratio_abnormal=ratio_abnormal)
+                                ratio_abnormal=ratio_abnormal,
+                                num_examples=num_examples)
 
     # Load model
     if optimizer_ in ['one_class', 'one_class_unsupervised']:
@@ -309,7 +312,8 @@ for mean in mean_d1i_list:
                                 abnormal_mu_test=mean,
                                 normal_mu_train=normal_mu,
                                 abnormal_mu_train=abnormal_mu,
-                                ratio_abnormal=ratio_abnormal)
+                                ratio_abnormal=ratio_abnormal,
+                                num_examples=num_examples)
 
     # Load model
     if optimizer_ in ['one_class', 'one_class_unsupervised']:
