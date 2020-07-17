@@ -116,12 +116,12 @@ step, radius_normal, radius_abnormal = p.step, p.radius_normal, p.radius_abnorma
 # Define folder to save the model and relating results
 # Note that we delete pretrain here; the default setting is pretrain.
 if optimizer_ in ['one_class', 'one_class_unsupervised']:
-    folder_name = '{}_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(ratio_abnormal))
+    folder_name = '{}_[{}]_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(ratio_abnormal), step)
     out_path = './report/one_class/{}'.format(folder_name)
     final_path = out_path
 
 elif optimizer_ in ['rec', 'rec_unsupervised']:
-    folder_name = '{}_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(ratio_abnormal))
+    folder_name = '{}_[{}]_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(ratio_abnormal), step)
     out_path = './report/rec/{}'.format(folder_name)
     final_path = out_path
 
