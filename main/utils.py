@@ -2,7 +2,7 @@ import numpy as np
 from math import sin, cos
 
 
-def gen_ball(r, mu, step=45):
+def gen_ball(r, mu, step=30):
     """
     Generate a set of data points surrounding a point like a ball.
     This function will later be used in main to generate a set of means

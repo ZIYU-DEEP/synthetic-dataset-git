@@ -91,7 +91,7 @@ parser.add_argument('--load_ae', type=bool, default=False,
 parser.add_argument('--txt_filename', type=str, default='full_results.txt')
 
 # Arguments for utils
-parser.add_argument('-st', '--step', type=int, default=45)
+parser.add_argument('-st', '--step', type=int, default=30)
 parser.add_argument('-raa', '--radius_normal', type=float, default=2.5)
 parser.add_argument('-ran', '--radius_abnormal', type=float, default=2.5)
 
@@ -138,6 +138,8 @@ result_df_path = Path(final_path) / 'result_df.pkl'
 cut_90_path = Path(final_path) / 'cut_90.npy'
 cut_95_path = Path(final_path) / 'cut_95.npy'
 cut_99_path = Path(final_path) / 'cut_99.npy'
+df_d0i_path = Path(final_path) / 'df_d0i.pkl'
+df_d1i_path = Path(final_path) / 'df_d1i.pkl'
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -261,13 +263,14 @@ print('Done Training.')
 #############################################
 f = open(txt_result_file, 'a')
 
-mean_d1i_list = gen_ball(radius_abnormal, [int(i) for i in abnormal_mu_.split('_')], step)
-mean_d0i_list = gen_ball(radius_normal, [int(i) for i in normal_mu.split('_')], step)
+mean_d0i_list = gen_ball(radius_abnormal, [int(i) for i in abnormal_mu_.split('_')], step)
+mean_d1i_list = gen_ball(radius_normal, [int(i) for i in normal_mu.split('_')], step)
+res_d0i, res_d1i = [], []
 
 f.write('============================================================\n')
 f.write('Recall when d0i changes (FPR=10%):\n')
 
-for mean in mean_d1i_list:
+for mean in mean_d0i_list:
     # Load dataset
     dataset_eval = load_dataset(loader_name=loader_eval_name,
                                 abnormal_mu_test=mean,
@@ -293,11 +296,14 @@ for mean in mean_d1i_list:
     d0i = ((np.array(mean) - [int(i) for i in normal_mu.split('_')]) ** 2).sum()
 
     # Write results
-    f.write('[d1i=2.5, d0i={}; recall={}]\n'.format(d0i, recall_90))
+    f.write('[d0i={}; d1i=2.5; recall={}]\n'.format(d0i, recall_90))
+
+    # Prepare for the DataFrame
+    res_d0i.append([d0i, radius_abnormal, recall_90, mean])
 
 f.write('============================================================\n')
 f.write('Recall when d1i changes (FPR=10%):\n')
-for mean in mean_d0i_list:
+for mean in mean_d1i_list:
     # Load dataset
     dataset_eval = load_dataset(loader_name=loader_eval_name,
                                 abnormal_mu_test=mean,
@@ -323,8 +329,24 @@ for mean in mean_d0i_list:
     d1i = ((np.array(mean) - [int(i) for i in abnormal_mu_.split('_')]) ** 2).sum()
 
     # Write results
-    f.write('[d1i={}; d0i=2.5; recall={}]\n'.format(d1i, recall_90))
+    f.write('[d0i=2.5; d1i={}; recall={}]\n'.format(d1i, recall_90))
+
+    # Prepare for the DataFrame
+    res_d1i.append([d1i, radius_normal, recall_90, mean])
 
 f.write('###########################################################\n\n\n\n')
 f.close()
+
+# Save the results into DataFrame
+df_d0i = pd.DataFrame(res_d0i).sort_values(0)
+df_d0i.columns = ['d0i', 'd1i', 'recall', 'mu']
+df_d0i = df_d0i.reset_index().drop('index', axis=1)
+df_d0i.to_pickle(df_d0i_path)
+
+df_d1i = pd.DataFrame(res_d1i).sort_values(1)
+df_d1i.columns = ['d0i', 'd1i', 'recall', 'mu']
+df_d1i = df_d1i.reset_index().drop('index', axis=1)
+df_d1i.to_pickle(df_d1i_path)
+
+# Say goodbye
 print('Finished. Now I am going to bed. Bye.')
