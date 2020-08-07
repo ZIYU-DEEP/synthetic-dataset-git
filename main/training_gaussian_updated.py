@@ -268,13 +268,11 @@ print('Done Training.')
 # ===========================================================================
 # This part is to save a different score df with a certain abnormal set.
 # ===========================================================================
-abnormal_mu_add = '1_1_1'
-ratio_abnormal_add = 0.1
 dataset_add = load_dataset(loader_name=loader_name,
                            normal_mu_train=normal_mu,
                            abnormal_mu_train=abnormal_mu_add,
                            ratio_abnormal=ratio_abnormal_add)
-model.test(dataset, device, n_jobs_dataloader, label_normal)
+model.test(dataset_add, device, n_jobs_dataloader, label_normal)
 
 # Prepare to write the results
 indices_add, labels_add, scores_add = zip(*model.results['test_scores'])
