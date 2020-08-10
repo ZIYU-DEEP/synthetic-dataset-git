@@ -130,7 +130,7 @@ abnormal_mu_add, ratio_abnormal_add = p.abnormal_mu_add, p.ratio_abnormal_add
 # Define folder to save the model and relating results
 # Note that we delete pretrain here; the default setting is pretrain.
 if optimizer_ in ['one_class', 'one_class_unsupervised']:
-    folder_name = '{}_[{}]_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(ratio_abnormal), step)
+    folder_name = '{}_[{}]_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu_add, str(ratio_abnormal), step)
     out_path = './report/one_class/{}'.format(folder_name)
     final_path = out_path
 
