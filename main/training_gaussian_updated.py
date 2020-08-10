@@ -11,6 +11,13 @@
 > python training_gaussian.py -am 1_1_1 -nt gaussian3d_rec -op rec
 (Supervised one class)
 > python training_gaussian.py -am 1_1_1 -nt gaussian3d_one_class -op one_class
+
+If you need to set different data, be sure to change:
+(Unsupervised)
+- nm xxx -am_ xxx -am_add (the last 2 is typically the same)
+(Supervised)
+- nm xxx - am xxx -am_ xxx -am_add (the last three is typically the same)
+And note that -ran and -raa should be set with regard to your normal data
 """
 
 #############################################
@@ -48,9 +55,9 @@ parser.add_argument('-ln', '--loader_name', type=str, default='gaussian3d',
                     help='[Choice]: fmnist, kmnist, cifar10')
 parser.add_argument('-le', '--loader_eval_name', type=str, default='gaussian3d_eval',
                     help='fmnist_eval, kmnist, cifar10_eval')
-parser.add_argument('-nm', '--normal_mu', type=str, default='1_-1_1')
+parser.add_argument('-nm', '--normal_mu', type=str, default='1_1_1')
 parser.add_argument('-am', '--abnormal_mu', type=str, default='')
-parser.add_argument('-am_', '--abnormal_mu_', type=str, default='1_1_1',
+parser.add_argument('-am_', '--abnormal_mu_', type=str, default='1_-1_1',
                     help='When you need to assign a value for abnormal mu in unsupervised setting.')
 parser.add_argument('-ra', '--ratio_abnormal', type=float, default=0.1,
                     help='[Example]: 0.1')
@@ -94,11 +101,11 @@ parser.add_argument('--txt_filename', type=str, default='full_results.txt')
 
 # Arguments for utils
 parser.add_argument('-st', '--step', type=int, default=30)
-parser.add_argument('-raa', '--radius_normal', type=float, default=2.5)
-parser.add_argument('-ran', '--radius_abnormal', type=float, default=2.5)
+parser.add_argument('-ran', '--radius_normal', type=float, default=2.5)
+parser.add_argument('-raa', '--radius_abnormal', type=float, default=2.5)
 
 # Arguments for additional DataFrame with a certain abnormal data
-parser.add_argument('-am_add', '--abnormal_mu_add', type=str, default='1_1_1')
+parser.add_argument('-am_add', '--abnormal_mu_add', type=str, default='1_-1_1')
 parser.add_argument('-ra_add', '--ratio_abnormal_add', type=float, default=0.1)
 
 p = parser.parse_args()
