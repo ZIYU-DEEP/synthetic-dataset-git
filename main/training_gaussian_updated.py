@@ -135,7 +135,7 @@ if optimizer_ in ['one_class', 'one_class_unsupervised']:
     final_path = out_path
 
 elif optimizer_ in ['rec', 'rec_unsupervised']:
-    folder_name = '{}_[{}]_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu, str(ratio_abnormal), step)
+    folder_name = '{}_[{}]_[{}]_[{}]_[{}]'.format(optimizer_, p.normal_mu, p.abnormal_mu_add, str(ratio_abnormal), step)
     out_path = './report/rec/{}'.format(folder_name)
     final_path = out_path
 
