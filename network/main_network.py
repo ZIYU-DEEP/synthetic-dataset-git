@@ -9,6 +9,7 @@ from kmnist_LeNet import KMNISTLeNet, KMNISTLeNetAutoencoder
 from cifar10_LeNet import CIFAR10LeNet, CIFAR10LeNetAutoencoder
 from gaussian3d_net import Guassian3DNet, Gaussian3DNetAutoencoder
 from gaussian3d_net import *
+from mlp.py import *
 
 
 # #########################################################################
@@ -51,6 +52,12 @@ def build_network(net_name='fmnist_LeNet_one_class'):
     if net_name == 'gaussian3d_rec':
         return Gaussian3DNetAutoencoder(rep_dim=2)
 
+    if net_name == 'satellite_mlp':
+        return MLP(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'satimage_mlp':
+        return MLP(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
+
     return None
 
 
@@ -77,5 +84,11 @@ def build_autoencoder(net_name='fmnist_LeNet_one_class'):
 
     if net_name == 'gaussian3d_one_class':
         return Gaussian3DNetAutoencoder(rep_dim=2)
+
+    if net_name == 'satellite_mlp':
+        return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'satimage_mlp':
+        return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
 
     return None

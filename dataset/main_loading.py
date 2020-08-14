@@ -9,6 +9,7 @@ from fmnist_loader import FashionMNISTLoader, FashionMNISTLoaderEval
 from cifar10_loader import CIFAR10Loader, CIFAR10LoaderEval
 from kmnist_loader import KMNISTLoader, KMNISTLoaderEval
 from gaussian3d_loader import Gaussian3DLoader, Gaussian3DLoaderEval
+from satimage_loader import SatimageLoader
 
 # #########################################################################
 # 1. Load Dataset in One Function
@@ -17,7 +18,7 @@ def load_dataset(loader_name: str='fmnist',
                  abnormal_mu_test: str='0.5_0.5_0.5',
                  normal_mu_train: str='1_-1_1',
                  abnormal_mu_train: str='',
-                 root: str='/net/leksai/data/FashionMNIST',
+                 root: str='../data/satimage-2.mat',
                  label_normal: tuple=(0,),
                  label_abnormal: tuple=(),
                  label_eval:tuple=(1,),
@@ -72,5 +73,9 @@ def load_dataset(loader_name: str='fmnist',
                                     abnormal_mu_train,
                                     ratio_abnormal,
                                     num_examples)
+
+    if loader_name == 'satimage':
+        return SatimageLoader(root,
+                              label_abnormal)
 
     return None
