@@ -9,7 +9,7 @@ from kmnist_LeNet import KMNISTLeNet, KMNISTLeNetAutoencoder
 from cifar10_LeNet import CIFAR10LeNet, CIFAR10LeNetAutoencoder
 from gaussian3d_net import Guassian3DNet, Gaussian3DNetAutoencoder
 from gaussian3d_net import *
-from mlp.py import *
+from mlp import *
 
 
 # #########################################################################
