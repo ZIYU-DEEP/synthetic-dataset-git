@@ -11,6 +11,7 @@ from kmnist_loader import KMNISTLoader, KMNISTLoaderEval
 from gaussian3d_loader import Gaussian3DLoader, Gaussian3DLoaderEval
 from satimage_loader import SatimageLoader
 from satellite_loader import SatelliteLoader
+from odds_loader import OddsLoader
 
 # #########################################################################
 # 1. Load Dataset in One Function
@@ -76,11 +77,27 @@ def load_dataset(loader_name: str='fmnist',
                                     num_examples)
 
     if loader_name == 'satimage':
-        return SatimageLoader(root,
-                              label_abnormal)
+        return OddsLoader(root,
+                          label_abnormal)
 
     if loader_name == 'satellite':
-        return SatelliteLoader(root,
-                               label_abnormal)
+        return OddsLoader(root,
+                          label_abnormal)
+
+    if loader_name == 'arrhythmia':
+        return OddsLoader(root,
+                          label_abnormal)
+
+    if loader_name == 'cardio':
+        return OddsLoader(root,
+                          label_abnormal)
+
+    if loader_name == 'thyroid':
+        return OddsLoader(root,
+                          label_abnormal)
+
+    if loader_name == 'shuttle':
+        return OddsLoader(root,
+                          label_abnormal)
 
     return None

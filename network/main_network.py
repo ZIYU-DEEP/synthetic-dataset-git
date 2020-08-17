@@ -52,6 +52,18 @@ def build_network(net_name='fmnist_LeNet_one_class'):
     if net_name == 'gaussian3d_rec':
         return Gaussian3DNetAutoencoder(rep_dim=2)
 
+    if net_name == 'arrhythmia_mlp_one_class':
+        return MLP(x_dim=274, h_dims=[128, 64], rep_dim=32, bias=False)
+
+    if net_name == 'arrhythmia_mlp_rec':
+        return MLP_Autoencoder(x_dim=274, h_dims=[128, 64], rep_dim=32, bias=False)
+
+    if net_name == 'cardio_mlp_one_class':
+        return MLP(x_dim=21, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'cardio_mlp_rec':
+        return MLP_Autoencoder(x_dim=21, h_dims=[32, 16], rep_dim=8, bias=False)
+
     if net_name == 'satellite_mlp_one_class':
         return MLP(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
 
@@ -63,6 +75,19 @@ def build_network(net_name='fmnist_LeNet_one_class'):
 
     if net_name == 'satimage_mlp_rec':
         return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'shuttle_mlp_one_class':
+        return MLP(x_dim=9, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'shuttle_mlp_rec':
+        return MLP_Autoencoder(x_dim=9, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'thyroid_mlp_one_class':
+        return MLP(x_dim=6, h_dims=[32, 16], rep_dim=4, bias=False)
+
+    if net_name == 'thyroid_mlp_rec':
+        return MLP_Autoencoder(x_dim=6, h_dims=[32, 16], rep_dim=4, bias=False)
+
     return None
 
 
@@ -76,6 +101,8 @@ def build_autoencoder(net_name='fmnist_LeNet_one_class'):
     net_name = net_name.strip()
 
     # The network for the one-class model pretraining
+
+
     if net_name == 'fmnist_LeNet_one_class':
         return FashionMNISTLeNetAutoencoder(rep_dim=64)
 
@@ -90,10 +117,22 @@ def build_autoencoder(net_name='fmnist_LeNet_one_class'):
     if net_name == 'gaussian3d_one_class':
         return Gaussian3DNetAutoencoder(rep_dim=2)
 
+    if net_name == 'arrhythmia_mlp_one_class':
+        return MLP_Autoencoder(x_dim=274, h_dims=[128, 64], rep_dim=32, bias=False)
+
+    if net_name == 'cardio_mlp_one_class':
+        return MLP_Autoencoder(x_dim=21, h_dims=[32, 16], rep_dim=8, bias=False)
+
     if net_name == 'satellite_mlp_one_class':
         return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
 
     if net_name == 'satimage_mlp_one_class':
         return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'shuttle_mlp_one_class':
+        return MLP_Autoencoder(x_dim=9, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'thyroid_mlp_one_class':
+        return MLP_Autoencoder(x_dim=6, h_dims=[32, 16], rep_dim=4, bias=False)
 
     return None
