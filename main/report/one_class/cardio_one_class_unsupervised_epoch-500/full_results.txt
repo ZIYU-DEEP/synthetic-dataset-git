@@ -1,0 +1,11 @@
+############################################################
+2020-08-17 02:59:16
+[DataFrame Name] report/one_class/cardio_one_class_unsupervised_epoch-500/result_df.pkl
+[Normal Folder] (0,)
+[Abnormal Filename] ()
+[Model] one_class_unsupervised
+[Eta] 1.0
+[Epochs] 500
+[Cut Threshold with 0.05 FP Rate] 0.09062382951378822
+[Cut Threshold with 0.01 FP Rate] 0.1741206020116806
+---------------------

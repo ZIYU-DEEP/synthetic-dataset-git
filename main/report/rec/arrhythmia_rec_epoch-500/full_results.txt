@@ -1,0 +1,14 @@
+############################################################
+2020-08-17 03:09:58
+[DataFrame Name] report/rec/arrhythmia_rec_epoch-500/result_df.pkl
+[Normal Folder] (0,)
+[Abnormal Filename] (1,)
+[Model] rec
+[Eta] 1.0
+[Epochs] 500
+[Cut Threshold with 0.05 FP Rate] 1435.4605895996092
+[Cut Threshold with 0.01 FP Rate] 1613.0596704101563
+[A/N Ratio] 1:0.16666666666666666
+[Recall for TEST (FP = 0.05)] 0.3076923076923077
+[Recall for TEST (FP = 0.01)] 0.23076923076923078
+---------------------

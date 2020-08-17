@@ -1,0 +1,14 @@
+############################################################
+2020-08-17 02:47:13
+[DataFrame Name] report/one_class/thyroid_one_class_epoch-500/result_df.pkl
+[Normal Folder] (0,)
+[Abnormal Filename] (1,)
+[Model] one_class
+[Eta] 1.0
+[Epochs] 500
+[Cut Threshold with 0.05 FP Rate] 0.05318314488977194
+[Cut Threshold with 0.01 FP Rate] 0.18163918554782843
+[A/N Ratio] 1:0.025815217391304348
+[Recall for TEST (FP = 0.05)] 1.0
+[Recall for TEST (FP = 0.01)] 0.9473684210526315
+---------------------
