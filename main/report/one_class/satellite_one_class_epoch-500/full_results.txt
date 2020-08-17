@@ -1,0 +1,14 @@
+############################################################
+2020-08-17 00:16:59
+[DataFrame Name] report/one_class/satellite_one_class_epoch-500/result_df.pkl
+[Normal Folder] (0,)
+[Abnormal Filename] (1,)
+[Model] one_class
+[Eta] 1.0
+[Epochs] 500
+[Cut Threshold with 0.05 FP Rate] 175.51183547973625
+[Cut Threshold with 0.01 FP Rate] 247.90717834472673
+[A/N Ratio] 1:0.4625
+[Recall for TEST (FP = 0.05)] 0.8132678132678133
+[Recall for TEST (FP = 0.01)] 0.6437346437346437
+---------------------

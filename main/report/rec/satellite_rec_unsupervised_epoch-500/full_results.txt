@@ -1,0 +1,11 @@
+############################################################
+2020-08-17 00:21:01
+[DataFrame Name] report/rec/satellite_rec_unsupervised_epoch-500/result_df.pkl
+[Normal Folder] (0,)
+[Abnormal Filename] ()
+[Model] rec_unsupervised
+[Eta] 1.0
+[Epochs] 500
+[Cut Threshold with 0.05 FP Rate] 10485.6306640625
+[Cut Threshold with 0.01 FP Rate] 11225.679960937501
+---------------------

@@ -1,0 +1,11 @@
+############################################################
+2020-08-17 00:19:55
+[DataFrame Name] report/one_class/satellite_one_class_unsupervised_epoch-500/result_df.pkl
+[Normal Folder] (0,)
+[Abnormal Filename] ()
+[Model] one_class_unsupervised
+[Eta] 1.0
+[Epochs] 500
+[Cut Threshold with 0.05 FP Rate] 211.88751525878905
+[Cut Threshold with 0.01 FP Rate] 227.05775802612305
+---------------------
