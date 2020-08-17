@@ -2,6 +2,13 @@
 [Title] main.py
 [Description] The main file to run the unsupervised models.
 [Author] Lek'Sai Ye, University of Chicago
+[Commands]
+> semi-supervised
+python training_real.py -ln satimage -rt ../data/satimage-2.mat -la 1 -nt satimage_mlp -op one_class
+python training_real.py -ln satimage -rt ../data/satimage-2.mat -la 1 -nt satimage_mlp -op rec
+> unsupervised
+python training_real.py -ln satimage -rt ../data/satimage-2.mat -nt satimage_mlp -op one_class_unsupervised
+python training_real.py -ln satimage -rt ../data/satimage-2.mat -nt satimage_mlp -op rec_unsupervised
 """
 
 #############################################
@@ -37,7 +44,7 @@ parser.add_argument('--random_state', type=int, default=42)
 parser.add_argument('-ln', '--loader_name', type=str, default='satimage',
                     help='[Choice]: fmnist, kmnist, cifar10')
 parser.add_argument('-le', '--loader_eval_name', type=str, default='fmnist_eval',
-                    help='fmnist_eval, kmnist, cifar10_eval')
+                    help='unused in this python file')
 parser.add_argument('-rt', '--root', type=str, default='../data/satimage-2.mat',
                     help='[Example]: /net/leksai/data/FashionMNIST, /net/leksai/data/CIFAR10')
 parser.add_argument('-lb', '--label_normal', type=str, default='0',
@@ -45,7 +52,7 @@ parser.add_argument('-lb', '--label_normal', type=str, default='0',
 parser.add_argument('-la', '--label_abnormal', type=str, default='',
                     help='[Example]: 1')
 parser.add_argument('-ra', '--ratio_abnormal', type=float, default=0.1,
-                    help='[Example]: 0.1')
+                    help='unused in this python file')
 
 # Arguments for main_network
 parser.add_argument('-nt', '--net_name', type=str, default='satimage_mlp',
@@ -246,7 +253,7 @@ print('Done Training.')
 # ===========================================================================
 dataset_add = load_dataset(loader_name=loader_name,
                            root=root,
-                           label_abnormal=label_abnormal)
+                           label_abnormal=(1,))
 
 model.test(dataset_add, device, n_jobs_dataloader, label_normal)
 
