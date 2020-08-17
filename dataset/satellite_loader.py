@@ -91,17 +91,17 @@ class SatelliteLoader(BaseLoader):
         super().__init__()
 
         # Get train set
-        self.train_set = SatimageDataset(root,
+        self.train_set = SatelliteDataset(root,
                                          label_abnormal,
                                          True,
                                          split,
                                          random_state)
 
-        self.test_set = SatimageDataset(root,
-                                        label_abnormal,
-                                        False,
-                                        split,
-                                        random_state)
+        self.test_set = SatelliteDataset(root,
+                                         label_abnormal,
+                                         False,
+                                         split,
+                                         random_state)
 
     def loaders(self,
                 batch_size: int=128,
