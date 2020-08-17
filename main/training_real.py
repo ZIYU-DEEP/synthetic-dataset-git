@@ -55,7 +55,7 @@ parser.add_argument('-ra', '--ratio_abnormal', type=float, default=0.1,
                     help='unused in this python file')
 
 # Arguments for main_network
-parser.add_argument('-nt', '--net_name', type=str, default='satimage_mlp',
+parser.add_argument('-nt', '--net_name', type=str, default='satimage_mlp_one_class',
                     help='[Choice]: fmnist_LeNet_one_class, fmnist_LeNet_rec, cifar10_LeNet_one_class, cifar10_LeNet_rec')
 parser.add_argument('-rp', '--rep_dim', type=int, default=64,
                     help='Only apply to DeepSAD model. Does not matter now.')
@@ -72,7 +72,7 @@ parser.add_argument('-et', '--eta_str', default=100,
 parser.add_argument('--optimizer_name', type=str, default='adam')
 parser.add_argument('--lr', type=float, default=0.0001)
 parser.add_argument('--ae_lr', type=float, default=0.001)
-parser.add_argument('--n_epochs', type=int, default=300)
+parser.add_argument('--n_epochs', type=int, default=500)
 parser.add_argument('--ae_n_epochs', type=int, default=100)
 parser.add_argument('--lr_milestones', type=str, default='50',
                     help='50_100_150_200_250')
@@ -108,12 +108,12 @@ txt_filename = p.txt_filename
 
 # Define folder to save the model and relating results
 if optimizer_ in ['one_class', 'one_class_unsupervised']:
-    folder_name = '{}_{}'.format(loader_name, optimizer_)
+    folder_name = '{}_{}_epoch-{}'.format(loader_name, optimizer_, n_epochs)
     out_path = './report/one_class/{}'.format(folder_name)
     final_path = out_path
 
 elif optimizer_ in ['rec', 'rec_unsupervised']:
-    folder_name = '{}_{}'.format(loader_name, optimizer_)
+    folder_name = '{}_{}_epoch-{}'.format(loader_name, optimizer_, n_epochs)
     out_path = './report/rec/{}'.format(folder_name)
     final_path = out_path
 
