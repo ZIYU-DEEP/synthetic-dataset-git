@@ -72,10 +72,10 @@ parser.add_argument('-et', '--eta_str', default=100,
 parser.add_argument('--optimizer_name', type=str, default='adam')
 parser.add_argument('--lr', type=float, default=0.0001)
 parser.add_argument('--ae_lr', type=float, default=0.001)
-parser.add_argument('--n_epochs', type=int, default=150)
-parser.add_argument('--ae_n_epochs', type=int, default=150)
+parser.add_argument('--n_epochs', type=int, default=300)
+parser.add_argument('--ae_n_epochs', type=int, default=100)
 parser.add_argument('--lr_milestones', type=str, default='50',
-                    help='50_100_150')
+                    help='50_100_150_200_250')
 parser.add_argument('--batch_size', type=int, default=128)
 parser.add_argument('--weight_decay', type=float, default=0.5e-6)
 parser.add_argument('--ae_weight_decay', type=float, default=0.5e-3)
