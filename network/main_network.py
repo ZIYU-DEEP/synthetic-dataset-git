@@ -52,12 +52,17 @@ def build_network(net_name='fmnist_LeNet_one_class'):
     if net_name == 'gaussian3d_rec':
         return Gaussian3DNetAutoencoder(rep_dim=2)
 
-    if net_name == 'satellite_mlp':
+    if net_name == 'satellite_mlp_one_class':
         return MLP(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
 
-    if net_name == 'satimage_mlp':
+    if net_name == 'satellite_mlp_rec':
+        return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
+
+    if net_name == 'satimage_mlp_one_class':
         return MLP(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
 
+    if net_name == 'satimage_mlp_rec':
+        return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
     return None
 
 
@@ -85,10 +90,10 @@ def build_autoencoder(net_name='fmnist_LeNet_one_class'):
     if net_name == 'gaussian3d_one_class':
         return Gaussian3DNetAutoencoder(rep_dim=2)
 
-    if net_name == 'satellite_mlp':
+    if net_name == 'satellite_mlp_one_class':
         return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
 
-    if net_name == 'satimage_mlp':
+    if net_name == 'satimage_mlp_one_class':
         return MLP_Autoencoder(x_dim=36, h_dims=[32, 16], rep_dim=8, bias=False)
 
     return None
